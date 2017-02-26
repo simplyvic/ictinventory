@@ -1,0 +1,71 @@
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% include 'navbar.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Fixed Top Navbar Example for Bootstrap</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
+    <link href="{% static 'css/navbar-fixed-top.css' %}" rel="stylesheet">
+    <link href="{% static 'js/nprogress/nprogress.css' %}" rel="stylesheet">
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+
+    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+
+  </head>
+
+  <body>
+
+
+    <div class="container">
+
+      <div class="jumbotron"><!-- Jumbotron starts here-->
+        {% if request.user.is_authenticated %}
+        <div class="title">{{title}}</div><br>
+        <div class="row"><!--Row starts here-->
+    	   
+            <div class="col-sm-4"><!--Col 1 starts here-->
+                <form method="post" action="">
+        			{% csrf_token %}
+        			{{form|crispy}}
+        			<input class='btn btn-primary'  type="submit" value="Save" />
+        		</form>
+            </div><!--Col 1 ENDS here-->
+
+            <div class="col-sm-6"><!--Col 2 starts here-->
+                <img src="{% static 'img/computer.jpg' %}">
+            </div><!--Col 2 ENDS here-->
+       
+
+        </div><!--Row ENDS here-->
+        {% else %}You do not have permission to view this page
+        {% endif %}
+      </div><!-- Jumbotron ENDS here-->
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/pager/paging.js' %}"></script>
+    <script src="{% static 'js/nprogress/nprogress.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script>window.jQuery || document.write('<script src="{% static 'js/jquery.min.js' %}"><\/script>')</script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+  </body>
+</html>
